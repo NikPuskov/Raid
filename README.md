@@ -10,13 +10,21 @@ RAID
 1) Проверим какие диски собираем в RAID
 
 vagrant@ubuntu-jammy:~$ sudo lshw -short | grep disk
+
 /0/100/d/0         /dev/sdc   disk           262MB VBOX HARDDISK
+
 /0/100/d/1         /dev/sdd   disk           262MB VBOX HARDDISK
+
 /0/100/d/2         /dev/sde   disk           262MB VBOX HARDDISK
+
 /0/100/d/3         /dev/sdf   disk           262MB VBOX HARDDISK
+
 /0/100/d/4         /dev/sdg   disk           262MB VBOX HARDDISK
+
 /0/100/d/5         /dev/sdh   disk           262MB VBOX HARDDISK
+
 /0/100/14/0.0.0    /dev/sda   disk           42GB HARDDISK
+
 /0/100/14/0.1.0    /dev/sdb   disk           10MB HARDDISK
 
 2) Собираем RAID
