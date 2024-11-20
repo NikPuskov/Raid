@@ -162,65 +162,123 @@ Consistency Policy : resync
 7) Создать GPT раздел, пять разделов и смонтировать их на диск
 
 parted -s /dev/md0 mklabel gpt
+
 parted /dev/md0 mkpart primary ext4 0% 20%
+
 parted /dev/md0 mkpart primary ext4 20% 40%
+
 parted /dev/md0 mkpart primary ext4 40% 60%
+
 parted /dev/md0 mkpart primary ext4 60% 80%
+
 parted /dev/md0 mkpart primary ext4 80% 100%
+
 for i in $(seq 1 5); do sudo mkfs.ext4 /dev/md0p$i; done
+
 mkdir -p /raid/part{1,2,3,4,5}
+
 for i in $(seq 1 5); do mount /dev/md0p$i /raid/part$i; done
 
 В итоге получаем
+
 root@ubuntu-jammy:~# lsblk
+
 NAME      MAJ:MIN RM   SIZE RO TYPE   MOUNTPOINTS
+
 loop0       7:0    0 111.9M  1 loop   /snap/lxd/24322
+
 loop1       7:1    0  63.3M  1 loop   /snap/core20/1879
+
 loop2       7:2    0  53.2M  1 loop   /snap/snapd/19122
+
 sda         8:0    0    40G  0 disk
+
 └─sda1      8:1    0    40G  0 part   /
+
 sdb         8:16   0    10M  0 disk
+
 sdc         8:32   0   250M  0 disk
+
 └─md0       9:0    0   744M  0 raid10
+
   ├─md0p1 259:1    0   147M  0 part   /raid/part1
+
   ├─md0p2 259:4    0 148.5M  0 part   /raid/part2
+
   ├─md0p3 259:5    0   150M  0 part   /raid/part3
+
   ├─md0p4 259:8    0 148.5M  0 part   /raid/part4
+
   └─md0p5 259:9    0   147M  0 part   /raid/part5
+
 sdd         8:48   0   250M  0 disk
+
 └─md0       9:0    0   744M  0 raid10
+
   ├─md0p1 259:1    0   147M  0 part   /raid/part1
+
   ├─md0p2 259:4    0 148.5M  0 part   /raid/part2
+
   ├─md0p3 259:5    0   150M  0 part   /raid/part3
+
   ├─md0p4 259:8    0 148.5M  0 part   /raid/part4
+
   └─md0p5 259:9    0   147M  0 part   /raid/part5
+
 sde         8:64   0   250M  0 disk
+
 └─md0       9:0    0   744M  0 raid10
+
   ├─md0p1 259:1    0   147M  0 part   /raid/part1
+
   ├─md0p2 259:4    0 148.5M  0 part   /raid/part2
+
   ├─md0p3 259:5    0   150M  0 part   /raid/part3
+
   ├─md0p4 259:8    0 148.5M  0 part   /raid/part4
+
   └─md0p5 259:9    0   147M  0 part   /raid/part5
+
 sdf         8:80   0   250M  0 disk
+
 └─md0       9:0    0   744M  0 raid10
+
   ├─md0p1 259:1    0   147M  0 part   /raid/part1
+
   ├─md0p2 259:4    0 148.5M  0 part   /raid/part2
+
   ├─md0p3 259:5    0   150M  0 part   /raid/part3
+
   ├─md0p4 259:8    0 148.5M  0 part   /raid/part4
+
   └─md0p5 259:9    0   147M  0 part   /raid/part5
+
 sdg         8:96   0   250M  0 disk
+
 └─md0       9:0    0   744M  0 raid10
+
   ├─md0p1 259:1    0   147M  0 part   /raid/part1
+
   ├─md0p2 259:4    0 148.5M  0 part   /raid/part2
+
   ├─md0p3 259:5    0   150M  0 part   /raid/part3
+
   ├─md0p4 259:8    0 148.5M  0 part   /raid/part4
+
   └─md0p5 259:9    0   147M  0 part   /raid/part5
+
 sdh         8:112  0   250M  0 disk
+
 └─md0       9:0    0   744M  0 raid10
+
   ├─md0p1 259:1    0   147M  0 part   /raid/part1
+
   ├─md0p2 259:4    0 148.5M  0 part   /raid/part2
+
   ├─md0p3 259:5    0   150M  0 part   /raid/part3
+
   ├─md0p4 259:8    0 148.5M  0 part   /raid/part4
+
   └─md0p5 259:9    0   147M  0 part   /raid/part5
 
 
